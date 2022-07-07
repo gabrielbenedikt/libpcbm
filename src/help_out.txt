@@ -1,0 +1,74 @@
+done
+V(oltage) 0..5000 Motor voltage (mV)␊
+S/SN      +/-step Steps (max +/-32768). SN: no resonance tracking␊
+SW        +/-step Steps (max +/-32768) using sweep pulses␊
+U/UP/UN    +/-val Micropulses. Use - for CCW. P/N to stop at p/n edge␊
+US/UPS/UNS +/-val Same with sweep pulses␊
+LS                Optimize sensor current␊
+L(ed)     0..200  Set/query sensor current (x 0.1mA(␊
+P         R/N/A   Resonance sweep: P, PR (reverse), PA (alternating)␊
+CW/CCW    0..255  Motor voltage scaling (percent)␊
+RB                Backup Mem0-M38 in Mem216-mem255␊
+RS                Restore Mem0-M38 from Mem216-mem255␊
+G/GN      +/-pos  Goto position. GN: No resonance tracking␊
+F(req)    val     VCO frequency (Hz, max 125000)␊
+Vmin      0..5000 Vmin: Min voltage to turn motor␊
+Vmax      0..5000 Vmax: Max voltage␊
+
+STOP commands D,S,G & U: Type <CR>␊
+
+in progress
+
+
+todo
+[09:567:352] ADC>x?Stop        Stop repeats if (last measured mV/mA) > x. Also ADC<x?Stop␊
+[09:56:27:384] ADC>x?J=ADC       Set J (or K) = (last measured mV/mA) if > x. Also ADC<x?J=ADC␊
+[09:56:27:432] A/AI              Position/Index sensor voltage␊
+[09:56:27:448] B                 Search for Index point and set position to value set with ZI␊
+[09:56:27:527] D(elay)   val     Delay (ms)␊
+[09:56:27:591] I(nfo)     na     Frequency & current␊
+[09:56:27:607] J         val/P   Variable: j=10,sj-> run 10 steps. J=P sets J to current position␊
+[09:56:27:655] J>x?J=y           Set J to y if J > x. Also J<x?J=y, J>x?K=y, J<x?K=y␊
+[09:56:27:687] J>x?Stop          Stop repeat & set J=0. Also J<x?Stop␊
+[09:56:27:719] K                 Same as J␊
+[09:56:27:783] M         1..8    Selects motor M1 to M8␊
+[09:56:27:799] P90               Phase 90 dgr: Run mode␊
+[09:56:27:831] P0/P180           Static mode with phase 0/180 dgr. Use P90 to return to run mode␊
+[09:56:27:911] Q/QS      +/-     Minimum messages. Q- turns info back on. QS shows string on SPI␊
+[09:56:27:943] R/RD/RL   adr     Reads EEPROM byte/integer/long from address 'adr' (0..255)␊
+[09:56:28:039] STB       +/-     Toggle motor on/off. Use - for CCW␊
+[09:56:28:246] W/WD      val@adr Writes byte/int in address 'adr' (0..255). Note '@'␊
+[09:56:28:294] X/XI      val     Repeat 'val' times. XI => forever. Stop with <CR>␊
+[09:56:28:326] Z/ZI      +/-pos  Z:Set Position, ZI:Set index offset␊
+[09:56:28:358] H(elp)    na      This text␊:2
+[09:56:28:374] ␊
+[09:56:28:374] MEMORY: Read 2-byte positions with RD command, i.e. RD4:␊
+[09:56:28:390] ␊
+[09:56:28:390] 1:     Current motor␊
+[09:56:28:406] 4+5:   Sweep pulse frequency step␊
+[09:56:28:422] 6+7:   Sweep pulse frequency step duration (x 30us)␊
+[09:56:28:455] 8:     Resonance range low (kHz)␊
+[09:56:28:470] 9:     Resonance range high (kHz) (High>Low)␊
+[09:56:28:502] 10:    Continue after stop (ms)␊
+[09:56:28:518] 11:    Debounce multiplier (x 30us, std: 1)␊
+[09:56:28:534] 12+13: Max step time (ms) (std 250)␊
+[09:56:28:550] 14+15: Tracking stability delay (std:250)␊
+[09:56:28:582] 16+17: Vs, motor voltage 0..5000mV. V-command to set/query␊
+[09:56:28:598] 18:    Current offset␊
+[09:56:28:614] 20:    Current calibration (std:30)␊
+[09:56:28:630] 21:    Step size in sweep (x 10Hz)␊
+[09:56:28:645] 22:    Step size in tracking (Hz)␊
+[09:56:28:677] MOTOR MEMORY: Motor# starting position = 13*(Motor#+1)␊
+[09:56:28:693] + 0-1  Position␊
+[09:56:28:709] + 2+3  Index offset for setting position after B command, use ZI to set value␊
+[09:56:28:741] + 5    Vmin (x 100mV)␊
+[09:56:28:757] + 6    Vmax (x 100mV)␊
+[09:56:28:773] + 7    Sensor current (x 0.1mA)␊
+[09:56:28:789] + 8-9  Oscillator from sweep/tracking or F-command␊
+[09:56:28:821] + 10   CW percent scaling of Vs (0..255) in S/G-commands␊
+[09:56:28:837] + 11   Same for CCW␊
+[09:56:28:853] ␊
+[09:56:28:869] ␊
+[09:56:28:869] NOTE !!! MAX RATED MOTOR CURRENT: Diameter x 16mA␊
+[09:56:28:901] ␊
+[09:56:28:949] >>   

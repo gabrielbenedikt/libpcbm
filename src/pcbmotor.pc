@@ -1,0 +1,12 @@
+prefix=/usr/local
+exec_prefix=/usr/local
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libpcbmotor
+Description: C++ PCBMotor rotation mount librarty
+Version: 0.1
+
+Requires:
+Libs: -L${libdir} -lpcbmotor
+Cflags: -I${includedir}
