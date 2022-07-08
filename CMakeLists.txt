@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
-   project(libpcbmotor VERSION 0.1 DESCRIPTION "C++ PCBMotor rotation mount librarty")
+   project(pcbmotor VERSION 0.1 DESCRIPTION "C++ PCBMotor rotation mount librarty")
 
    set(CMAKE_BUILD_TYPE RELEASE)
    
@@ -24,35 +24,35 @@ cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
    
    find_package(Boost 1.70 REQUIRED COMPONENTS system)
 
-   add_library(libpcbmotor SHARED src/pcbm.cpp src/pcbm_comm.cpp)
+   add_library(pcbmotor SHARED src/pcbm.cpp src/pcbm_comm.cpp)
    
-   set_target_properties(libpcbmotor PROPERTIES VERSION ${PROJECT_VERSION})
-   set_target_properties(libpcbmotor PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR})
-   set_target_properties(libpcbmotor PROPERTIES PUBLIC_HEADER include/pcbmotor.h)
+   set_target_properties(pcbmotor PROPERTIES VERSION ${PROJECT_VERSION})
+   set_target_properties(pcbmotor PROPERTIES SOVERSION ${PROJECT_VERSION_MAJOR})
+   set_target_properties(pcbmotor PROPERTIES PUBLIC_HEADER include/pcbmotor.h)
 
-   target_include_directories(libpcbmotor PRIVATE include)
-   target_include_directories(libpcbmotor PRIVATE src)
+   target_include_directories(pcbmotor PRIVATE include)
+   target_include_directories(pcbmotor PRIVATE src)
    
    
    include(GNUInstallDirs)
    
-   install(TARGETS libpcbmotor
+   install(TARGETS pcbmotor
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
     configure_file(pcbmotor.pc.in pcbmotor.pc @ONLY)
    
-   set_property(TARGET libpcbmotor PROPERTY CXX_STANDARD 20)
+   set_property(TARGET pcbmotor PROPERTY CXX_STANDARD 20)
    
    install(FILES ${CMAKE_BINARY_DIR}/pcbmotor.pc DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/pkgconfig)
    
-   target_link_libraries(libpcbmotor ${Boost_LIBRARIES})
+   target_link_libraries(pcbmotor ${Boost_LIBRARIES})
    
    include(CheckIPOSupported)
    check_ipo_supported(RESULT hasipo OUTPUT error)
    if( hasipo )
       message(STATUS "IPO / LTO enabled")
-      set_property(TARGET libpcbmotor PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
+      set_property(TARGET pcbmotor PROPERTY INTERPROCEDURAL_OPTIMIZATION TRUE)
    else()
       message(STATUS "IPO / LTO not supported: <${error}>")
    endif()
