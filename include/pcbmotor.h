@@ -3,20 +3,15 @@
 
 #include "boost_serial.h"
 
-#include <boost/utility.hpp>
-#include <boost/asio.hpp>
-
 #include <cstdlib>
-#include <stdexcept>
 #include <exception>
 #include <string>
 #include <vector>
 #include <iostream>
 
-class timeout_exception;
-class Boost_serial;
-
 class PCBMotor {
+private:
+    Boost_serial *bserial;
 public:
 
     PCBMotor(std::string devname="");
@@ -24,8 +19,7 @@ public:
 
     bool sensordata();
 
-
-
+public:
     bool isopen();
     void info();
     void help();
@@ -104,8 +98,12 @@ public:
     void restore_memory(uint8_t mnum);
     void restore_memory(std::vector<uint8_t> mnum);
     
+private:
     void open(std::string port);
+    std::string read();
+    std::string query(const std::string &data);
     void close();
+    void write(const std::string &data);
 };
 
 #endif // PCBMOTOR_H
