@@ -21,6 +21,7 @@ public:
 
 public:
     bool isopen();
+    void close();
     void info();
     void help();
     
@@ -102,7 +103,6 @@ private:
     void open(std::string port);
     std::string read();
     std::string query(const std::string &data);
-    void close();
     void write(const std::string &data);
 };
 
